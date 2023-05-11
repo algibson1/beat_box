@@ -11,4 +11,7 @@ class LinkedList
         tally += 1 if @head.next_node == nil
         tally
     end
+    def to_string
+        @head.data.to_s
+    end
 end
