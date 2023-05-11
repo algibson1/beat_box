@@ -10,4 +10,11 @@ describe LinkedList do
         list = LinkedList.new
         expect(list.head).to be_nil
     end
+    it 'appends data using nodes' do
+        list = LinkedList.new
+        list.append("doop")
+        expect(list.head).to be_a(Node)
+        expect(list.head.data).to eq("doop")
+        expect(list.head.next_node).to be_nil
+    end
 end
