@@ -22,4 +22,9 @@ describe LinkedList do
         list.append("doop")
         expect(list.count).to eq(1)
     end
+    it 'can turn node data into string' do
+        list = LinkedList.new
+        list.append("doop")
+        expect(list.to_string).to eq("doop")
+    end
 end
