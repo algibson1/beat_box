@@ -17,4 +17,9 @@ describe LinkedList do
         expect(list.head.data).to eq("doop")
         expect(list.head.next_node).to be_nil
     end
+    it 'can count nodes' do
+        list = LinkedList.new
+        list.append("doop")
+        expect(list.count).to eq(1)
+    end
 end
