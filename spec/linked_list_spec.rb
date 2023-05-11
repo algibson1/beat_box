@@ -6,4 +6,8 @@ describe LinkedList do
         list = LinkedList.new
         expect(list).to be_a(LinkedList)
     end
+    it 'has no head by default' do
+        list = LinkedList.new
+        expect(list.head).to be_nil
+    end
 end
