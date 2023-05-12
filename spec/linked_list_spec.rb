@@ -2,6 +2,7 @@ require "./lib/linked_list"
 require "./lib/node"
 
 describe LinkedList do
+    # Iteration 1
     it 'exists' do
         list = LinkedList.new
         expect(list).to be_a(LinkedList)
@@ -69,16 +70,26 @@ describe LinkedList do
         list.append("bop")
         expect(list.to_string).to eq("doop deep bop")
     end
-    xit 'can count nodes in an empty list' do
+    it 'can count nodes in an empty list' do
         list = LinkedList.new
         expect(list.count).to eq(0)
     end
-    xit 'can return tail is nil if head is nil' do
+    it 'can return tail is nil in an empty list' do
         list = LinkedList.new
         expect(list.tail).to be_nil
     end
-    xit 'can return empty string if head is nil' do
+    it 'can return empty string in an empty list' do
         list = LinkedList.new
         expect(list.to_string).to eq("")
+    end
+    # Iteration 2
+    it 'can prepend nodes' do
+        list = LinkedList.new
+        list.append("plop")
+        expect(list.to_string).to eq("plop")
+        list.append("suu")
+        list.prepend("dop")
+        expect(list.to_string).to eq("dop plop suu")
+        expect(list.count).to eq(3)
     end
 end
