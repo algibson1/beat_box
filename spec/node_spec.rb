@@ -13,4 +13,10 @@ describe Node do
         expect(node.data).to eq("plop")
         expect(node.next_node).to eq(nil)
     end
+    it 'can append new nodes' do
+        node = Node.new("plop")
+        second_node = Node.new("beep")
+        node.append_node(second_node)
+        expect(node.next_node).to eq(second_node)
+    end
 end
