@@ -32,7 +32,7 @@ describe LinkedList do
         list.append("doop")
         expect(list.tail.data).to eq("doop")
     end
-    xit 'can find tail in list of multiple nodes' do
+    it 'can find tail in list of multiple nodes' do
         list = LinkedList.new
         list.append("doop")
         list.append("deep")
@@ -40,7 +40,7 @@ describe LinkedList do
         list.append("bop")
         expect(list.tail.data).to eq("bop")
     end
-    xit 'can append multiple nodes' do
+    it 'can append multiple nodes' do
         list = LinkedList.new
         expect(list.head).to be_nil
         list.append("doop")
@@ -51,7 +51,7 @@ describe LinkedList do
         list.append("bop")
         expect(list.head.next_node.next_node).to be_a(Node)
     end
-    xit 'can count multiple nodes' do
+    it 'can count multiple nodes' do
         list = LinkedList.new
         expect(list.head).to be_nil
         list.append("doop")
@@ -60,7 +60,7 @@ describe LinkedList do
         list.append("bop")
         expect(list.count).to eq(3)
     end
-    xit 'can convert data from multiple nodes to a string' do
+    it 'can convert data from multiple nodes to a string' do
         list = LinkedList.new
         expect(list.head).to be_nil
         list.append("doop")
@@ -68,5 +68,17 @@ describe LinkedList do
         expect(list.to_string).to eq("doop deep")
         list.append("bop")
         expect(list.to_string).to eq("doop deep bop")
+    end
+    xit 'can count nodes in an empty list' do
+        list = LinkedList.new
+        expect(list.count).to eq(0)
+    end
+    xit 'can return tail is nil if head is nil' do
+        list = LinkedList.new
+        expect(list.tail).to be_nil
+    end
+    xit 'can return empty string if head is nil' do
+        list = LinkedList.new
+        expect(list.to_string).to eq("")
     end
 end
