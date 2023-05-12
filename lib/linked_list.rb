@@ -52,4 +52,14 @@ class LinkedList
         data << tail.data
         data_string = data.join(" ")
     end
+    def insert(number, data)
+        @head = Node.new(data) if @head == nil
+        previous_nodes = @head
+        (number-1).times do |i|
+            previous_nodes = previous_nodes.next_node
+        end
+        later_nodes = previous_nodes.next_node
+        beginning_nodes = previous_nodes.append_node(Node.new(data))
+        full_new_list = beginning_nodes.append_node(later_nodes)
+    end
 end
