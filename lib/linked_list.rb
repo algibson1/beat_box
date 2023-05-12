@@ -81,9 +81,15 @@ class LinkedList
         found = strings[position..(position - 1 + quantity)]
         found.join(" ")
     end
-    # def includes?(data)
-
-    # end
+    def includes?(data)
+        match = false
+        node = @head
+        count.times do |i|
+            match = true if node.data == data
+            node = node.next_node
+        end
+        match
+    end
     # def pop 
         
     # end
