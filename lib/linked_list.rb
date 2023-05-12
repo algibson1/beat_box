@@ -19,8 +19,13 @@ class LinkedList
         node
     end
     def count
-        tally = 0
-        tally += 1 if @head.next_node == nil
+        return 1 if @head.next_node == nil
+        tally = 1
+        node = @head
+        while node.next_node != nil
+            tally += 1
+            node = node.next_node
+        end
         tally
     end
     def to_string
