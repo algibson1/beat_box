@@ -11,6 +11,7 @@ class LinkedList
         end
     end
     def tail
+        return nil unless @head != nil
         node = @head
         return node if node.next_node == nil
         while node.next_node != nil
@@ -19,6 +20,7 @@ class LinkedList
         node
     end
     def count
+        return 0 if @head == nil
         return 1 if @head.next_node == nil
         tally = 1
         node = @head
@@ -29,6 +31,7 @@ class LinkedList
         tally
     end
     def to_string
+        return "" if @head == nil
         return @head.data if @head.next_node == nil
         node = @head
         data = []
