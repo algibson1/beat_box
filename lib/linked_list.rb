@@ -10,6 +10,16 @@ class LinkedList
         self.tail.append_node(Node.new(data))
         end
     end
+    def prepend(data)
+        current_nodes = @head 
+        if current_nodes == nil
+            @head = Node.new(data)
+        else
+        prepend_node = Node.new(data)
+        prepend_node.append_node(current_nodes)
+        @head = prepend_node
+        end
+    end
     def tail
         return nil unless @head != nil
         node = @head
