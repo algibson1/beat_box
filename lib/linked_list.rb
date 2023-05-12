@@ -4,7 +4,19 @@ class LinkedList
         @head = nil
     end
     def append(data)
-        @head = Node.new(data) if @head == nil
+        if @head == nil
+            @head = Node.new(data)
+        else
+        self.tail.append_node(Node.new(data))
+        end
+    end
+    def tail
+        node = @head
+        return node if node.next_node == nil
+        while node.next_node != nil
+            node = node.next_node
+        end
+        node
     end
     def count
         tally = 0
