@@ -92,7 +92,7 @@ describe LinkedList do
         expect(list.to_string).to eq("dop plop suu")
         expect(list.count).to eq(3)
     end
-    xit 'can prepend nodes to empty list' do
+    it 'can prepend nodes to empty list' do
         list = LinkedList.new
         list.prepend("dop")
         expect(list.to_string).to eq("dop")
@@ -109,5 +109,20 @@ describe LinkedList do
         list = LinkedList.new
         list.insert(1, "woo")
         expect(list.to_string).to eq("woo")
+    end
+    xit 'adds inserted nodes to end when number is greater than count' do
+        list = LinkedList.new
+        list.append("plop")
+        list.append("suu")
+        list.insert(5, "woo")
+        expect(list.to_string).to eq("plop suu woo")
+        expect(list.count).to eq(3)
+    end
+    xit 'can prepend using insert' do
+        list = LinkedList.new
+        list.append("plop")
+        list.append("suu")
+        list.insert(0, "woo")
+        expect(list.to_string).to eq("wood plop suu")
     end
 end
