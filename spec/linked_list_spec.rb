@@ -47,4 +47,13 @@ describe LinkedList do
         list.append("bop")
         expect(list.count).to eq(3)
     end
+    it 'can convert data from multiple nodes to a string' do
+        list = LinkedList.new
+        expect(list.head).to be_nil
+        list.append("doop")
+        list.append("deep")
+        expect(list.to_string).to eq("doop deep")
+        list.append("bop")
+        expect(list.to_string).to eq("doop deep bop")
+    end
 end
