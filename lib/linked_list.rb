@@ -53,13 +53,20 @@ class LinkedList
         data_string = data.join(" ")
     end
     def insert(number, data)
-        @head = Node.new(data) if @head == nil
-        previous_nodes = @head
-        (number-1).times do |i|
-            previous_nodes = previous_nodes.next_node
+        if @head == nil
+            @head = Node.new(data)
+        elsif number == 0
+            prepend(data)
+        elsif number < count
+            previous_nodes = @head
+            (number-1).times do |i|
+                previous_nodes = previous_nodes.next_node
+            end
+            later_nodes = previous_nodes.next_node
+            beginning_nodes = previous_nodes.append_node(Node.new(data))
+            full_new_list = beginning_nodes.append_node(later_nodes)
+        else
+            append(data)
         end
-        later_nodes = previous_nodes.next_node
-        beginning_nodes = previous_nodes.append_node(Node.new(data))
-        full_new_list = beginning_nodes.append_node(later_nodes)
     end
 end
