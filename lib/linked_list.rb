@@ -23,8 +23,7 @@ class LinkedList
     def tail
         return nil unless @head != nil
         node = @head
-        return node if node.next_node == nil
-        while node.next_node != nil
+        until node.next_node == nil
             node = node.next_node
         end
         node
@@ -90,7 +89,21 @@ class LinkedList
         end
         match
     end
-    # def pop 
-        
-    # end
+    def pop 
+        if count > 1
+            popped = tail.data
+            node = @head
+            until node.next_node.next_node == nil
+                node = node.next_node
+            end
+            node.append_node(nil)
+            popped
+        elsif count ==0
+            nil
+        else
+            popped = @head.data
+            @head = nil
+            popped
+        end
+    end
 end
