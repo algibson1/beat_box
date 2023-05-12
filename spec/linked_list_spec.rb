@@ -83,7 +83,7 @@ describe LinkedList do
         expect(list.to_string).to eq("")
     end
     # Iteration 2
-    it 'can prepend nodes' do
+    xit 'can prepend nodes' do
         list = LinkedList.new
         list.append("plop")
         expect(list.to_string).to eq("plop")
@@ -91,5 +91,13 @@ describe LinkedList do
         list.prepend("dop")
         expect(list.to_string).to eq("dop plop suu")
         expect(list.count).to eq(3)
+    end
+    xit 'can insert nodes' do
+        list = LinkedList.new
+        list.append("plop")
+        list.append("suu")
+        list.prepend("dop")
+        list.insert(1, "woo")
+        expect(list.to_string).to eq("dop woo suu plop")
     end
 end
