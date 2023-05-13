@@ -13,7 +13,7 @@ describe BeatBox do
         bb = BeatBox.new
         expect(bb.list.head).to be_nil
         expect(bb.append("deep doo ditt")).to eq("deep doo ditt")
-        expect(list.head.data).to eq("deep")
+        expect(bb.list.head.data).to eq("deep")
         expect(bb.list.head.next_node.data).to eq("doo")
         expect(bb.append("woo hoo shu")).to eq("woo hoo shu")
     end
@@ -22,5 +22,13 @@ describe BeatBox do
         bb.append("deep doo ditt")
         bb.append("woo hoo shu")
         expect(bb.count).to eq(6)
+    end
+    it 'can play beats!' do
+        bb = BeatBox.new
+        bb.append("deep doo ditt woo hoo shu")
+        expect(bb.count).to eq(6)
+        expect(bb.list.count).to eq(6)
+        #going for a guess here
+        expect(bb.play).to eq(`say -r 300 "deep doo ditt woo hoo shu"`)
     end
 end
