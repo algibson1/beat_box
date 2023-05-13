@@ -9,6 +9,7 @@ class LinkedList
         else
         self.tail.append_node(Node.new(data))
         end
+        data
     end
     def prepend(data)
         current_nodes = @head 

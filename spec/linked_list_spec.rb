@@ -13,7 +13,8 @@ describe LinkedList do
     end
     it 'appends data from one node' do
         list = LinkedList.new
-        list.append("doop")
+        node = list.append("doop")
+        expect(node).to eq("doop")
         expect(list.head).to be_a(Node)
         expect(list.head.data).to eq("doop")
         expect(list.head.next_node).to be_nil
@@ -138,7 +139,7 @@ describe LinkedList do
         list.insert(0, "woo")
         expect(list.to_string).to eq("woo plop suu")
     end
-    xit 'can find node data' do
+    it 'can find node data' do
         list = LinkedList.new
         list.append("deep")
         list.append("woo")
@@ -149,11 +150,11 @@ describe LinkedList do
         expect(list.find(2,1)).to eq("shi")
         expect(list.find(1,3)).to eq("woo shi shu")
     end
-    xit 'returns nil if find is called on empty list' do
+    it 'returns nil if find is called on empty list' do
         list = LinkedList.new
         expect(list.find(2,1)).to be_nil
     end
-    xit 'returns nil if node position in find does not exist' do
+    it 'returns nil if node position in find does not exist' do
         list = LinkedList.new
         list.append("deep")
         list.append("woo")
@@ -162,7 +163,7 @@ describe LinkedList do
         list.append("blop")
         expect(list.find(7,1)).to be_nil
     end
-    xit 'returns all trailing nodes even if find quantity is too high' do
+    it 'returns all trailing nodes even if find quantity is too high' do
         list = LinkedList.new
         list.append("deep")
         list.append("woo")
@@ -171,7 +172,7 @@ describe LinkedList do
         list.append("blop")
         expect(list.find(2, 7)).to eq("shi shu blop")
     end
-    xit 'position 0 works as an argument in find method' do
+    it 'position 0 works as an argument in find method' do
         list = LinkedList.new
         list.append("deep")
         list.append("woo")
@@ -180,7 +181,7 @@ describe LinkedList do
         list.append("blop")
         expect(list.find(0, 2)).to eq("deep woo")
     end
-    xit 'can see if nodes include certain data' do
+    it 'can see if nodes include certain data' do
         list = LinkedList.new
         list.append("deep")
         list.append("woo")
@@ -190,11 +191,11 @@ describe LinkedList do
         expect(list.includes?("deep")).to be true
         expect(list.includes?("dep")).to be false
     end
-    xit 'does not error when include method is called on empty list' do
+    it 'does not error when include method is called on empty list' do
         list = LinkedList.new
         expect(list.includes?("deep")).to be false
     end
-    xit 'checks for full node data' do
+    it 'checks for full node data' do
         list = LinkedList.new
         list.append("deep")
         list.append("woo")
@@ -204,7 +205,7 @@ describe LinkedList do
         expect(list.includes?("deep")).to be true
         expect(list.includes?("dee")).to be false
     end
-    xit 'pops trailing node from list' do
+    it 'pops tail node from list' do
         list = LinkedList.new
         list.append("deep")
         list.append("woo")
@@ -215,14 +216,14 @@ describe LinkedList do
         expect(list.pop).to eq("shu")
         expect(list.to_string).to eq("deep woo shi")
     end
-    xit 'can pop head if it is the only node' do
+    it 'can pop head if it is the only node' do
         list = LinkedList.new
         list.append("deep")
         expect(list.pop).to eq("deep")
         expect(list.head).to be_nil
         expect(list.count).to eq(0)
     end
-    xit 'cannot pop anything if list is empty' do
+    it 'cannot pop anything if list is empty' do
         list = LinkedList.new
         expect(list.pop).to be_nil
     end
