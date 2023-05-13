@@ -13,4 +13,9 @@ class BeatBox
     def count
         @list.count
     end
+    def play
+        `say -r 150 -v Boing #{@list.to_string}`
+    end
 end
+
+

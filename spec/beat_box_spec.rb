@@ -28,7 +28,6 @@ describe BeatBox do
         bb.append("deep doo ditt woo hoo shu")
         expect(bb.count).to eq(6)
         expect(bb.list.count).to eq(6)
-        #going for a guess here
-        expect(bb.play).to eq(`say -r 300 "deep doo ditt woo hoo shu"`)
+        expect(bb.play).to eq(`say -r 150 -v Boing "deep doo ditt woo hoo shu"`)
     end
 end
