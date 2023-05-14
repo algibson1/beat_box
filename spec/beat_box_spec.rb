@@ -31,6 +31,17 @@ describe BeatBox do
         expect(bb.play).to eq(`say -r 150 -v Boing "deep doo ditt woo hoo shu"`)
     end
     # Iteration 4
+    it 'can prepend data' do
+        bb BeatBox.new("deep")
+        bb.prepend("woo hoo shu")
+        expect(bb.list.to_string).to eq("woo hoo shu deep")
+    end
+    it 'can print all beats to string' do
+        bb BeatBox.new("deep")
+        expect(bb.all).to eq("deep")
+        bb.prepend("tee tee tee Mississippi")
+        expect(bb.all).to eq("tee tee tee deep")
+    end
     it 'can reject invalid beats' do
         bb = BeatBox.new("deep")
         bb.append("Mississippi")
