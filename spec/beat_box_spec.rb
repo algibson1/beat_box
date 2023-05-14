@@ -30,4 +30,12 @@ describe BeatBox do
         expect(bb.list.count).to eq(6)
         expect(bb.play).to eq(`say -r 150 -v Boing "deep doo ditt woo hoo shu"`)
     end
+    # Iteration 4
+    it 'can reject invalid beats' do
+        bb = BeatBox.new("deep")
+        bb.append("Mississippi")
+        expect(bb.all).to eq("deep")
+        bb.prepend("tee tee tee Mississippi")
+        expect(bb.all).to eq("tee tee tee deep")
+    end
 end
