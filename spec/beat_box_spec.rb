@@ -28,16 +28,16 @@ describe BeatBox do
         bb.append("deep doo ditt woo hoo shu")
         expect(bb.count).to eq(6)
         expect(bb.list.count).to eq(6)
-        expect(bb.play).to eq(`say -r 150 -v Boing "deep doo ditt woo hoo shu"`)
+        expect(bb.play).to eq(6)
     end
     # Iteration 4
     it 'can prepend data' do
-        bb BeatBox.new("deep")
+        bb = BeatBox.new("deep")
         bb.prepend("woo hoo shu")
         expect(bb.list.to_string).to eq("woo hoo shu deep")
     end
     it 'can print all beats to string' do
-        bb BeatBox.new("deep")
+        bb = BeatBox.new("deep")
         expect(bb.all).to eq("deep")
         bb.prepend("tee tee tee Mississippi")
         expect(bb.all).to eq("tee tee tee deep")
@@ -48,5 +48,39 @@ describe BeatBox do
         expect(bb.all).to eq("deep")
         bb.prepend("tee tee tee Mississippi")
         expect(bb.all).to eq("tee tee tee deep")
+    end
+    it 'can change voice' do
+        bb = BeatBox.new("deep dop dop deep")
+        expect(bb.play).to eq(4)
+        expect(bb.voice = "Daniel").to eq("Daniel")
+        expect(bb.voice).to eq("Daniel")
+        expect(bb.play).to eq(4)
+    end
+    it 'can change rate' do
+        bb = BeatBox.new("deep dop dop deep")
+        expect(bb.rate).to eq(500)
+        expect(bb.rate = 100).to eq(100)
+        expect(bb.play).to eq(4)
+        expect(bb.rate).to eq(100)
+    end
+    it 'can reset voice' do
+        bb = BeatBox.new("deep dop dop deep")
+        expect(bb.voice).to eq("Boing")
+        bb.voice = "Daniel"
+        expect(bb.voice).to eq("Daniel")
+        expect(bb.play).to eq(4)
+        expect(bb.reset_voice).to eq("Boing")
+        expect(bb.voice).to eq("Boing")
+        expect(bb.play).to eq(4)
+    end
+    it 'can reset rate' do
+        bb = BeatBox.new("deep dop dop deep")
+        expect(bb.rate).to eq(500)
+        bb.rate = 100
+        expect(bb.rate).to eq(100)
+        expect(bb.play).to eq(4)
+        expect(bb.reset_rate).to eq(500)
+        expect(bb.rate).to eq(500)
+        expect(bb.play).to eq(4)
     end
 end
