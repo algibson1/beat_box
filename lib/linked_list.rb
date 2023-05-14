@@ -18,7 +18,7 @@ class LinkedList
         data
     end
     def tail
-        return nil unless @head != nil
+        return nil unless @head
         node = @head
         until node.next_node == nil
             node = node.next_node
@@ -26,11 +26,10 @@ class LinkedList
         node
     end
     def count
-        return 0 if @head == nil
-        return 1 if @head.next_node == nil
+        return 0 if !@head
         tally = 1
         node = @head
-        while node.next_node != nil
+        while node.next_node
             tally += 1
             node = node.next_node
         end
@@ -60,7 +59,7 @@ class LinkedList
             end
             later_nodes = previous_nodes.next_node
             beginning_nodes = previous_nodes.append_node(Node.new(data))
-            full_new_list = beginning_nodes.append_node(later_nodes)
+            beginning_nodes.append_node(later_nodes)
         else
             append(data)
         end
@@ -87,20 +86,13 @@ class LinkedList
         match
     end
     def pop 
-        if count > 1
-            popped = tail.data
-            node = @head
-            until node.next_node.next_node == nil
-                node = node.next_node
-            end
-            node.append_node(nil)
-            popped
-        elsif count ==0
-            nil
-        else
-            popped = @head.data
-            @head = nil
-            popped
+        popped = tail&.data
+        node = @head
+        while node&.next_node&.next_node
+            node = node.next_node
         end
+        node&.append_node(nil)
+        @head = nil if @head == node
+        popped
     end
 end
