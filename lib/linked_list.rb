@@ -4,7 +4,7 @@ class LinkedList
         @head = nil
     end
     def append(data)
-        if @head == nil
+        if !@head
             @head = Node.new(data)
         else
         self.tail.append_node(Node.new(data))
@@ -13,13 +13,9 @@ class LinkedList
     end
     def prepend(data)
         current_nodes = @head 
-        if current_nodes == nil
-            @head = Node.new(data)
-        else
-        prepend_node = Node.new(data)
-        prepend_node.append_node(current_nodes)
-        @head = prepend_node
-        end
+        @head = Node.new(data)
+        @head.append_node(current_nodes)
+        data
     end
     def tail
         return nil unless @head != nil
@@ -53,7 +49,7 @@ class LinkedList
         data_string = data.join(" ")
     end
     def insert(number, data)
-        if @head == nil
+        if !@head
             @head = Node.new(data)
         elsif number == 0
             prepend(data)
