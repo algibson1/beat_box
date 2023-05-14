@@ -77,13 +77,8 @@ class LinkedList
         found.join(" ")
     end
     def includes?(data)
-        match = false
-        node = @head
-        count.times do |i|
-            match = true if node.data == data
-            node = node.next_node
-        end
-        match
+        beats = self.to_string.split
+        beats.include?(data)
     end
     def pop 
         popped = tail&.data
