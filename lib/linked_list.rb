@@ -40,16 +40,14 @@ class LinkedList
     end
 
     def to_string
-        return "" if @head.nil?
-        return @head.data if @head.next_node.nil?
         node = @head
         data = []
-        while node.next_node
+        while node&.next_node
             data << node.data
             node = node.next_node
         end
-        data << tail.data
-        data_string = data.join(" ")
+        data << tail&.data
+        data_string = data&.join(" ")
     end
 
     def insert(number, data)
