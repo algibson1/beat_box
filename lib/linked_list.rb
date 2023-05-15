@@ -29,13 +29,13 @@ class LinkedList
     end
 
     def count
-        return 0 if @head.nil?
-        tally = 1
+        tally = 0
         node = @head
-        while node.next_node
+        while node&.next_node
             tally += 1
             node = node.next_node
         end
+        tally += 1 if tail&.data
         tally
     end
 
