@@ -3,30 +3,33 @@ class LinkedList
     def initialize
         @head = nil
     end
+
     def append(data)
-        if !@head
+        if @head.nil?
             @head = Node.new(data)
         else
         self.tail.append_node(Node.new(data))
         end
         data
     end
+
     def prepend(data)
         current_nodes = @head 
         @head = Node.new(data)
         @head.append_node(current_nodes)
         data
     end
+
     def tail
-        return nil unless @head
         node = @head
-        until node.next_node == nil
+        until node&.next_node.nil?
             node = node.next_node
         end
         node
     end
+
     def count
-        return 0 if !@head
+        return 0 if @head.nil?
         tally = 1
         node = @head
         while node.next_node
@@ -35,20 +38,22 @@ class LinkedList
         end
         tally
     end
+
     def to_string
-        return "" if @head == nil
-        return @head.data if @head.next_node == nil
+        return "" if @head.nil?
+        return @head.data if @head.next_node.nil?
         node = @head
         data = []
-        while node.next_node != nil
+        while node.next_node
             data << node.data
             node = node.next_node
         end
         data << tail.data
         data_string = data.join(" ")
     end
+
     def insert(number, data)
-        if !@head
+        if @head.nil?
             @head = Node.new(data)
         elsif number == 0
             prepend(data)
@@ -64,11 +69,12 @@ class LinkedList
             append(data)
         end
     end
+
     def find(position, quantity)
-        return nil if @head == nil || position > count
+        return nil if @head.nil? || position > count
         strings = []
         node = @head
-        until node.next_node == nil 
+        until node.next_node.nil? 
             strings << node.data
             node = node.next_node
         end
@@ -76,10 +82,12 @@ class LinkedList
         found = strings[position..(position - 1 + quantity)]
         found.join(" ")
     end
+
     def includes?(data)
         beats = self.to_string.split
         beats.include?(data)
     end
+
     def pop 
         popped = tail&.data
         node = @head
