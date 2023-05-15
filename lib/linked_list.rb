@@ -71,16 +71,9 @@ class LinkedList
     end
 
     def find(position, quantity)
-        return nil if @head.nil? || position > count
-        strings = []
-        node = @head
-        until node.next_node.nil? 
-            strings << node.data
-            node = node.next_node
-        end
-        strings << tail.data
-        found = strings[position..(position - 1 + quantity)]
-        found.join(" ")
+        beats = self.to_string.split
+        found = beats[position..(position - 1 + quantity)]
+        found&.join(" ")
     end
 
     def includes?(data)
