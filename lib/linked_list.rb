@@ -3,83 +3,71 @@ class LinkedList
     def initialize
         @head = nil
     end
+
     def append(data)
-        if !@head
-            @head = Node.new(data)
-        else
-        self.tail.append_node(Node.new(data))
-        end
+        self.tail.append_node(Node.new(data)) unless @head.nil?
+        @head = Node.new(data) if @head.nil?
         data
     end
+
     def prepend(data)
         current_nodes = @head 
         @head = Node.new(data)
         @head.append_node(current_nodes)
         data
     end
+
     def tail
-        return nil unless @head
         node = @head
-        until node.next_node == nil
+        until node&.next_node.nil?
             node = node.next_node
         end
         node
     end
+
     def count
-        return 0 if !@head
-        tally = 1
+        tally = 0
         node = @head
-        while node.next_node
+        while node&.next_node
             tally += 1
             node = node.next_node
         end
+        tally += 1 if tail&.data
         tally
     end
+
     def to_string
-        return "" if @head == nil
-        return @head.data if @head.next_node == nil
         node = @head
         data = []
-        while node.next_node != nil
+        while node&.next_node
             data << node.data
             node = node.next_node
         end
-        data << tail.data
-        data_string = data.join(" ")
+        data << tail&.data
+        data_string = data&.join(" ")
     end
+
     def insert(number, data)
-        if !@head
-            @head = Node.new(data)
-        elsif number == 0
-            prepend(data)
-        elsif number < count
-            previous_nodes = @head
-            (number-1).times do |i|
-                previous_nodes = previous_nodes.next_node
-            end
-            later_nodes = previous_nodes.next_node
-            beginning_nodes = previous_nodes.append_node(Node.new(data))
-            beginning_nodes.append_node(later_nodes)
-        else
-            append(data)
-        end
+        old_nodes = @head
+        (number - 1).times {|i| old_nodes = old_nodes&.next_node}
+        later_nodes = old_nodes&.next_node
+        old_nodes&.append_node(Node.new(data))&.append_node(later_nodes) unless number == 0
+        prepend(data) if number == 0
+        append(data) if number > count
+        @head = Node.new(data) if @head.nil?
     end
+
     def find(position, quantity)
-        return nil if @head == nil || position > count
-        strings = []
-        node = @head
-        until node.next_node == nil 
-            strings << node.data
-            node = node.next_node
-        end
-        strings << tail.data
-        found = strings[position..(position - 1 + quantity)]
-        found.join(" ")
+        beats = self.to_string.split
+        found = beats[position..(position - 1 + quantity)]
+        found&.join(" ")
     end
+
     def includes?(data)
         beats = self.to_string.split
         beats.include?(data)
     end
+
     def pop 
         popped = tail&.data
         node = @head
