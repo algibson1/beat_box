@@ -51,21 +51,13 @@ class LinkedList
     end
 
     def insert(number, data)
-        if @head.nil?
-            @head = Node.new(data)
-        elsif number == 0
-            prepend(data)
-        elsif number < count
-            previous_nodes = @head
-            (number-1).times do |i|
-                previous_nodes = previous_nodes.next_node
-            end
-            later_nodes = previous_nodes.next_node
-            beginning_nodes = previous_nodes.append_node(Node.new(data))
-            beginning_nodes.append_node(later_nodes)
-        else
-            append(data)
-        end
+        old_nodes = @head
+        (number - 1).times {|i| old_nodes = old_nodes&.next_node}
+        later_nodes = old_nodes&.next_node
+        old_nodes&.append_node(Node.new(data))&.append_node(later_nodes) unless number == 0
+        prepend(data) if number == 0
+        append(data) if number > count
+        @head = Node.new(data) if @head.nil?
     end
 
     def find(position, quantity)
